@@ -3,7 +3,7 @@ import { createIcons, Layout, CheckCircle, PieChart, Settings, Plus, Trash2, Sea
 
 // --- Types ---
 type Priority = 'low' | 'medium' | 'high';
-type Category = 'Work' | 'Study' | 'Personal';
+type Category = 'Math' | 'Science' | 'History' | 'Languages' | 'Other';
 
 interface Task {
   id: string;
@@ -56,7 +56,7 @@ const Navbar = () => `
   <nav class="navbar animate-fade-in">
     <div class="container justify-between flex">
       <div class="nav-logo" style="cursor: pointer" onclick="window.navigate('landing')">
-        <div class="logo-icon"></div> SmartTask AI
+        <div class="logo-icon"></div> EduRoutine AI
       </div>
       <div class="nav-links mobile-hide">
         ${state.view === 'landing' ? `
@@ -85,13 +85,13 @@ const Sidebar = () => `
   <aside class="sidebar">
     <div class="flex flex-col gap-2">
       <button onclick="window.navigate('dashboard')" class="sidebar-link ${state.view === 'dashboard' ? 'active' : ''}">
-        <i data-lucide="layout"></i> Overview
+        <i data-lucide="layout"></i> Hub
       </button>
       <button onclick="window.navigate('tasks')" class="sidebar-link ${state.view === 'tasks' ? 'active' : ''}">
-        <i data-lucide="check-circle"></i> Tasks
+        <i data-lucide="check-circle"></i> Routines
       </button>
       <button onclick="window.navigate('analytics')" class="sidebar-link ${state.view === 'analytics' ? 'active' : ''}">
-        <i data-lucide="pie-chart"></i> Analytics
+        <i data-lucide="pie-chart"></i> Progress
       </button>
       <button onclick="window.navigate('settings')" class="sidebar-link ${state.view === 'settings' ? 'active' : ''}">
         <i data-lucide="settings"></i> Settings
@@ -115,38 +115,38 @@ const LandingView = () => `
     ${Navbar()}
     <section class="hero">
       <div class="container hero-content">
-        <h1>Work <span>Smarter</span>,<br>Not Harder.</h1>
-        <p>The first task manager powered by AI logic that plans your day, optimizes your workflow, and boosts your productivity by 40%.</p>
+        <h1>Master Your <span>Learning</span>,<br>One Routine at a Time.</h1>
+        <p>EduRoutine AI analyzes your learning goals and subjects to generate optimized, science-backed study schedules that fit your life.</p>
         <div class="flex justify-center gap-4">
-          <button onclick="window.navigate('auth')" class="btn btn-primary">Start for Free</button>
-          <button class="btn btn-outline">Watch Demo</button>
+          <button onclick="window.navigate('auth')" class="btn btn-primary">Start Learning</button>
+          <button class="btn btn-outline">See How It Works</button>
         </div>
       </div>
     </section>
 
     <section id="features" class="container" style="padding: 100px 0">
-      <h2 style="text-align: center; margin-bottom: 50px">Why Choice SmartTask?</h2>
+      <h2 style="text-align: center; margin-bottom: 50px">Why Choice EduRoutine?</h2>
       <div class="grid grid-cols-3 gap-8">
         <div class="card">
           <div style="background: rgba(99, 102, 241, 0.1); width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 20px">
             <i data-lucide="layout" style="color: var(--c-primary)"></i>
           </div>
-          <h3>Smart Groups</h3>
-          <p style="color: var(--c-text-muted)">Automatically categorize your tasks based on context and priority.</p>
+          <h3>Goal Analysis</h3>
+          <p style="color: var(--c-text-muted)">Tell us your 'motive' and we'll prioritize your hardest subjects first.</p>
         </div>
         <div class="card">
            <div style="background: rgba(244, 63, 94, 0.1); width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 20px">
             <i data-lucide="bell" style="color: var(--c-accent)"></i>
           </div>
-          <h3>Intelligent Alerts</h3>
-          <p style="color: var(--c-text-muted)">Get notified when your focus is drifting or deadlines are near.</p>
+          <h3>Smart Intervals</h3>
+          <p style="color: var(--c-text-muted)">Built-in Pomodoro and active recall alerts integrated into your routine.</p>
         </div>
         <div class="card">
            <div style="background: rgba(16, 185, 129, 0.1); width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; margin-bottom: 20px">
             <i data-lucide="star" style="color: #10b981"></i>
           </div>
           <h3>AI Generation</h3>
-          <p style="color: var(--c-text-muted)">Describe a project and get an instant, actionable step-by-step plan.</p>
+          <p style="color: var(--c-text-muted)">Instant routines based on your available study time and syllabus.</p>
         </div>
       </div>
     <section id="pricing" class="container" style="padding: 100px 0; border-top: 1px solid var(--c-border)">
@@ -223,26 +223,26 @@ const DashboardView = () => `
       <main class="main-content">
         <header class="flex justify-between items-center" style="margin-bottom: 32px">
           <div>
-            <h1>Dashboard</h1>
-            <p style="color: var(--c-text-muted)">Welcome back, ${state.user?.name}!</p>
+            <h1>Learning Hub</h1>
+            <p style="color: var(--c-text-muted)">Welcome back, ${state.user?.name}! Ready to study?</p>
           </div>
           <button onclick="window.navigate('tasks')" class="btn btn-primary">
-            <i data-lucide="plus"></i> New Task
+            <i data-lucide="plus"></i> New Routine
           </button>
         </header>
 
         <div class="grid grid-cols-3 gap-6" style="margin-bottom: 32px">
           <div class="card">
-            <div class="stat-label">Total Tasks</div>
+            <div class="stat-label">Total Subjects</div>
             <div class="stat-value">${state.tasks.length}</div>
           </div>
           <div class="card">
-            <div class="stat-label">Completed</div>
-            <div class="stat-value">${state.tasks.filter(t => t.completed).length}</div>
+            <div class="stat-label">Hours Studied</div>
+            <div class="stat-value">12.5h</div>
           </div>
           <div class="card">
-            <div class="stat-label">Efficiency Score</div>
-            <div class="stat-value" style="color: #10b981">85%</div>
+            <div class="stat-label">Mastery Level</div>
+            <div class="stat-value" style="color: #10b981">Active</div>
           </div>
         </div>
 
@@ -250,8 +250,8 @@ const DashboardView = () => `
           <div class="flex flex-col gap-6">
             <div class="card" style="flex: 1">
               <div class="flex justify-between items-center" style="margin-bottom: 16px">
-                <h3 style="font-size: 14px; font-weight: 600; color: var(--c-text-muted)">Recent Tasks</h3>
-                <span onclick="window.navigate('tasks')" style="font-size: 11px; color: var(--c-primary); cursor: pointer">View All</span>
+                <h3 style="font-size: 14px; font-weight: 600; color: var(--c-text-muted)">Active Subjects</h3>
+                <span onclick="window.navigate('tasks')" style="font-size: 11px; color: var(--c-primary); cursor: pointer">Manage</span>
               </div>
               <div class="task-list">
                 ${state.tasks.slice(0, 4).map(task => `
@@ -277,7 +277,7 @@ const DashboardView = () => `
             </div>
             
             <div class="card" style="flex: 1">
-               <h3 style="font-size: 14px; font-weight: 600; color: var(--c-text-muted); margin-bottom: 16px">Productivity Pulse</h3>
+               <h3 style="font-size: 14px; font-weight: 600; color: var(--c-text-muted); margin-bottom: 16px">Study Intensity</h3>
                <div class="bar-chart" style="border: none; padding: 0; background: transparent">
                 ${[40, 65, 85, 60, 95, 30, 20].map((val, i) => `
                   <div class="bar" style="height: ${val}%">
@@ -300,25 +300,41 @@ const TasksView = () => `
       ${Sidebar()}
       <main class="main-content">
         <div class="flex justify-between items-center" style="margin-bottom: 32px">
-          <h1>My Tasks</h1>
+          <h1>Routine Maker</h1>
           <button onclick="window.showTaskModal()" class="btn btn-primary">
-            <i data-lucide="plus"></i> Add Task
+            <i data-lucide="plus"></i> Add Subject
           </button>
         </div>
 
         <div class="ai-box" style="margin-bottom: 32px">
-          <h4 style="margin-bottom: 12px">Describe your task and I'll break it down:</h4>
-          <div class="flex gap-2">
-            <input id="ai-input" type="text" class="input-field" placeholder="e.g. Plan a 3-day trip to Tokyo">
-            <button onclick="window.generateSmartPlan()" class="btn btn-primary">Generate Plan</button>
+          <h3 style="margin-bottom: 16px; font-size: 16px; color: white">AI Study Routine Generator</h3>
+          <div class="flex flex-col gap-4">
+            <div class="input-group">
+              <label class="input-label" style="font-size: 12px">What is your learning goal? (Motive)</label>
+              <input id="ai-goal" type="text" class="input-field" placeholder="e.g. Ace my Final Exams, Become a Data Scientist">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+               <div class="input-group">
+                <label class="input-label" style="font-size: 12px">Your subjects</label>
+                <input id="ai-subjects" type="text" class="input-field" placeholder="e.g. Physics, Calculus, Python">
+              </div>
+              <div class="input-group">
+                <label class="input-label" style="font-size: 12px">Available daily study time (Hours)</label>
+                <input id="ai-time" type="number" class="input-field" placeholder="e.g. 4" min="1" max="16">
+              </div>
+            </div>
+            <button onclick="window.generateSmartPlan()" class="btn btn-primary" style="width: 100%; justify-content: center">
+              Generate My Routine
+            </button>
           </div>
-          <div id="ai-output" style="margin-top: 16px; display: none"></div>
+          <div id="ai-output" style="margin-top: 24px; display: none"></div>
         </div>
 
         <div class="task-list">
+          <h3 style="font-size: 14px; margin-bottom: 16px; color: var(--c-text-muted)">Subject Management</h3>
           ${state.tasks.length === 0 ? `
             <div style="text-align: center; padding: 48px; color: var(--c-text-muted)">
-              No tasks yet. Create one to get started!
+              No subjects added. Add them to track your progress!
             </div>
           ` : state.tasks.map(task => `
             <div class="task-item">
@@ -326,7 +342,7 @@ const TasksView = () => `
                 <input type="checkbox" ${task.completed ? 'checked' : ''} onchange="window.toggleTask('${task.id}')" style="width: 20px; height: 20px; cursor: pointer">
                 <div>
                   <div style="${task.completed ? 'text-decoration: line-through; opacity: 0.6' : ''}">${task.title}</div>
-                  <div style="font-size: 0.75rem; color: var(--c-text-muted)">${task.category} • ${task.dueDate || 'No date'}</div>
+                  <div style="font-size: 0.75rem; color: var(--c-text-muted)">${task.category} • ${task.dueDate || 'No exam date'}</div>
                 </div>
               </div>
               <div class="flex items-center gap-4">
@@ -474,23 +490,25 @@ const SettingsView = () => `
   modal.className = 'modal-overlay';
   modal.innerHTML = `
     <div class="modal-content animate-fade-in">
-      <h2 style="margin-bottom: 24px">Add New Task</h2>
+      <h2 style="margin-bottom: 24px">Add Subject</h2>
       <form onsubmit="window.saveTask(event)">
         <div class="input-group">
-          <label class="input-label">Task Title</label>
-          <input id="task-title" type="text" class="input-field" required placeholder="What needs to be done?">
+          <label class="input-label">Subject Name</label>
+          <input id="task-title" type="text" class="input-field" required placeholder="e.g. Advanced Calculus">
         </div>
         <div class="grid grid-cols-2 gap-4">
           <div class="input-group">
-            <label class="input-label">Category</label>
+            <label class="input-label">Field</label>
             <select id="task-category" class="input-field">
-              <option>Work</option>
-              <option>Study</option>
-              <option>Personal</option>
+              <option>Math</option>
+              <option>Science</option>
+              <option>History</option>
+              <option>Languages</option>
+              <option>Other</option>
             </select>
           </div>
           <div class="input-group">
-            <label class="input-label">Due Date</label>
+            <label class="input-label">Target Exam Date</label>
             <input id="task-date" type="date" class="input-field" value="${new Date().toISOString().split('T')[0]}">
           </div>
         </div>
@@ -504,7 +522,7 @@ const SettingsView = () => `
         </div>
         <div class="flex justify-end gap-2" style="margin-top: 24px">
           <button type="button" onclick="this.closest('.modal-overlay').remove()" class="btn btn-outline">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save Task</button>
+          <button type="submit" class="btn btn-primary">Save Subject</button>
         </div>
       </form>
     </div>
@@ -534,32 +552,46 @@ const SettingsView = () => `
 };
 
 (window as any).generateSmartPlan = () => {
-  const input = (document.getElementById('ai-input') as HTMLInputElement).value;
-  if (!input) return;
+  const goal = (document.getElementById('ai-goal') as HTMLInputElement).value;
+  const subjects = (document.getElementById('ai-subjects') as HTMLInputElement).value;
+  const time = (document.getElementById('ai-time') as HTMLInputElement).value;
+  
+  if (!goal || !subjects || !time) {
+    notify('Please fill in all layout fields.');
+    return;
+  }
   
   const output = document.getElementById('ai-output');
   if (output) {
     output.style.display = 'block';
-    output.innerHTML = `<div style="opacity: 0.5">Thinking...</div>`;
+    output.innerHTML = `<div style="opacity: 0.5; font-size: 13px">Analyzing focus areas for ${goal}...</div>`;
     
     setTimeout(() => {
+      const subjectList = subjects.split(',').map(s => s.trim());
+      const mainSubject = subjectList[0] || 'Core Subject';
+      const secondSubject = subjectList[1] || 'Secondary Subject';
+      
       output.innerHTML = `
         <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 16px">
-          <p style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: white">Plan: Launch Strategy</p>
+          <p style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: white">Routine: Optimized for ${goal}</p>
           <div class="ai-step" style="display: flex; gap: 8px; font-size: 12px; margin-bottom: 8px; color: var(--c-text-muted)">
-            <span style="color: var(--c-primary); font-weight: bold">01</span>
-            <span>Research and gathering (25 mins)</span>
+            <span style="color: var(--c-primary); font-weight: bold">08:00</span>
+            <span>Deep Work: ${mainSubject} - Problem Set Focus (90 mins)</span>
           </div>
           <div class="ai-step" style="display: flex; gap: 8px; font-size: 12px; margin-bottom: 8px; color: var(--c-text-muted)">
-            <span style="color: var(--c-primary); font-weight: bold">02</span>
-            <span>Critical analysis & drafting (45 mins)</span>
+            <span style="color: var(--c-primary); font-weight: bold">09:30</span>
+            <span>Active Recall: Flashcards & Summary (30 mins)</span>
           </div>
           <div class="ai-step" style="display: flex; gap: 8px; font-size: 12px; margin-bottom: 8px; color: var(--c-text-muted)">
-            <span style="color: var(--c-primary); font-weight: bold">03</span>
-            <span>Final refinement & review (15 mins)</span>
+            <span style="color: var(--c-primary); font-weight: bold">10:00</span>
+            <span>Break & Hydro / Stretch (15 mins)</span>
+          </div>
+          <div class="ai-step" style="display: flex; gap: 8px; font-size: 12px; margin-bottom: 8px; color: var(--c-text-muted)">
+            <span style="color: var(--c-primary); font-weight: bold">10:15</span>
+            <span>Focused Session: ${secondSubject} - Concept Reading (60 mins)</span>
           </div>
           <div style="font-size: 11px; margin-top: 12px; color: var(--c-primary); font-style: italic">
-            Est. Time: 1h 25m • Tips: Focus on step 1 to minimize rework.
+            Configured for ${time}h Daily • Tips: Your goals suggest prioritize Spaced Repetition on ${mainSubject}.
           </div>
         </div>
       `;
@@ -626,10 +658,10 @@ function showOnboarding() {
   modal.className = 'modal-overlay';
   modal.innerHTML = `
     <div class="modal-content animate-fade-in" style="text-align: center">
-      <div style="font-size: 3rem; margin-bottom: 20px">🚀</div>
-      <h2 style="margin-bottom: 12px">Welcome to the Future of Work</h2>
-      <p style="color: var(--c-text-muted); margin-bottom: 24px">SmartTask AI uses advanced logic to help you plan, track, and optimize your life. Ready to skyrocket your productivity?</p>
-      <button onclick="window.closeOnboarding(this)" class="btn btn-primary" style="width: 100%; justify-content: center">Let's Dive In!</button>
+      <div style="font-size: 3rem; margin-bottom: 20px">📚</div>
+      <h2 style="margin-bottom: 12px">Welcome to EduRoutine AI</h2>
+      <p style="color: var(--c-text-muted); margin-bottom: 24px">Master your subjects with science-backed schedules. Let's create your first optimized study routine.</p>
+      <button onclick="window.closeOnboarding(this)" class="btn btn-primary" style="width: 100%; justify-content: center">Start Learning</button>
     </div>
   `;
   document.body.appendChild(modal);
